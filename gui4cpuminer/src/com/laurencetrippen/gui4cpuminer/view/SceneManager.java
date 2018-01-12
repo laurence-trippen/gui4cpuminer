@@ -1,4 +1,4 @@
-package com.laurencetrippen.gui4cpuminer.view.scene;
+package com.laurencetrippen.gui4cpuminer.view;
 
 import java.io.IOException;
 import java.util.ArrayList;

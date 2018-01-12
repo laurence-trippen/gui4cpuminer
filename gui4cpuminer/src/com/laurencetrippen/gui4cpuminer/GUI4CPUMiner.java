@@ -1,6 +1,6 @@
 package com.laurencetrippen.gui4cpuminer;
 
-import com.laurencetrippen.gui4cpuminer.view.scene.SceneManager;
+import com.laurencetrippen.gui4cpuminer.view.SceneManager;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
