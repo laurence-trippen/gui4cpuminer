@@ -1,4 +1,4 @@
-package com.laurencetrippen.gui4cpuminer.core;
+package com.laurencetrippen.gui4cpuminer.model;
 
 public enum Algorithm {
 	Scrypt,
