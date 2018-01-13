@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.laurencetrippen.gui4cpuminer.model.Resources;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
@@ -37,7 +39,9 @@ public class SceneManager {
 	public void initScenes() {
 		for (String fxml : fxmlIdentifiers) {
 			try {
-				sceneMap.put(fxml, new Scene(FXMLLoader.load(getClass().getResource(fxml))));
+				Scene scene = new Scene(FXMLLoader.load(getClass().getResource(fxml)));
+				scene.getStylesheets().add(getClass().getResource(Resources.CSS).toExternalForm());
+				sceneMap.put(fxml, scene);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
