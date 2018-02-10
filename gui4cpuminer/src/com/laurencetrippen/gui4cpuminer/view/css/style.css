@@ -1,34 +1,20 @@
-.gui4cpu-menubar {
+.ui-sidebar {
 	-fx-background-color: #333333;
-	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-.gui4cpu-menubar-button {
-    -fx-background-color: #333333;
-    -fx-background-radius: 0.0px;
-    -fx-text-fill: #cccccc;
-    -fx-padding: 0.0 0.0 0.0 12.0;
-   	-fx-font-weight: bold;
-   	-fx-text-alignment: left;
+.ui-sidebar-button {
+	-fx-text-fill: white;
+	-fx-background-radius: 0;
+	-fx-background-color: #333333;
+	-fx-font-size: 18;
 }
 
-.gui4cpu-menubar-button-focused {
-    -fx-background-color: #404040;
-    -fx-text-fill: #f2f2f2;
-    -fx-border-color: #4169e1; 
-    -fx-border-width: 0.0 0.0 0.0 5.0;
-    -fx-border-style: solid;
+.ui-sidebar-button:hover {
+	-fx-background-color: #404040;
 }
 
-.gui4cpu-menubar-button:hover {
-    -fx-background-color: #4d4d4d;
-    -fx-text-fill: #f2f2f2;
-}
-
-.gui4cpu-menubar-button:active {
-    -fx-background-color: #404040;
-    -fx-text-fill: #f2f2f2;
-    -fx-border-color: #4169e1; 
-    -fx-border-width: 0.0 0.0 0.0 5.0;
-    -fx-border-style: solid;
+.ui-sidebar-button-active {
+	-fx-background-color: #4d4d4d;
+	-fx-border-color: #43bc62;
+	-fx-border-width: 0 0 0 5;
 }
