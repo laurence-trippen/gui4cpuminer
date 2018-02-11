@@ -2,7 +2,6 @@ package com.laurencetrippen.gui4cpuminer.view.scene;
 
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
-import com.laurencetrippen.gui4cpuminer.view.stage.MainStage;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,15 +12,13 @@ import javafx.scene.layout.AnchorPane;
 
 public class DashboardScene extends AbstractScene {
 
-	private MainStage mainStage;
 	private AnchorPane root;
 	private Button startButton;
 	private TextField textField;
 	private Sidebar sidebar;
 	
-	public DashboardScene(MainStage mainStage) {
+	public DashboardScene() {
 		super(new AnchorPane(), 1024, 768);
-		this.mainStage = mainStage;
 		this.initScene();
 		this.defineScene();
 	}
@@ -31,7 +28,7 @@ public class DashboardScene extends AbstractScene {
 		this.root = (AnchorPane) this.getRoot();
 		this.startButton = new Button("Start Mining");
 		this.textField = new TextField();
-		this.sidebar = new Sidebar(mainStage);
+		this.sidebar = new Sidebar();
 	}
 
 	@Override
