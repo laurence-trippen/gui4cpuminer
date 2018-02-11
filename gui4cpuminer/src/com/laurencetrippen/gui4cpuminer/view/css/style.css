@@ -4,7 +4,7 @@
 
 .ui-sidebar-button {
 	-fx-text-fill: white;
-	-fx-background-radius: 4;
+	-fx-background-radius: 0;
 	-fx-background-color: #333333;
 	-fx-font-size: 18;
 }

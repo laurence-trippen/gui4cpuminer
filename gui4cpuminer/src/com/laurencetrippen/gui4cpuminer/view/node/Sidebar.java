@@ -28,9 +28,8 @@ public class Sidebar extends Pane {
 		AnchorPane.setLeftAnchor(this, 0.0);
 		AnchorPane.setTopAnchor(this, 0.0);	
 
-		this.dashboardButton.setLayoutY(40);
-		this.dashboardButton.setLayoutX(10);
-		this.dashboardButton.setPrefSize(210, 64);
+		this.dashboardButton.setLayoutY(60);
+		this.dashboardButton.setPrefSize(230, 64);
 		this.dashboardButton.getStyleClass().add("ui-sidebar-button");
 		this.dashboardButton.getStyleClass().add("ui-sidebar-button-active");
 		this.dashboardButton.setAlignment(Pos.BASELINE_LEFT);
