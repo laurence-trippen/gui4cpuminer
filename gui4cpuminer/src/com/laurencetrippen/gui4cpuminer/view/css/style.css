@@ -25,6 +25,10 @@
 	-fx-font-size: 20;
 }
 
+.ui-button:hover {
+	-fx-background-color: #36964e;
+}
+
 .ui-textfield {
 	-fx-font-size: 16;
 	-fx-background-color: #e6e6e6;
