@@ -3,15 +3,21 @@ package com.laurencetrippen.gui4cpuminer.view.scene;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class DashboardScene extends AbstractScene {
 
+	private boolean hide = true;
 	private AnchorPane root;
+	private AnchorPane configPane;
 	private Button startButton;
 	private Button stopButton;
 	private Button settingsButton;
@@ -26,6 +32,7 @@ public class DashboardScene extends AbstractScene {
 	@Override
 	protected void initScene() {
 		this.root = (AnchorPane) this.getRoot();
+		this.configPane = new AnchorPane();
 		this.startButton = new Button("Start Mining");
 		this.stopButton = new Button("Stop Mining");
 		this.settingsButton = new Button("Settings");
@@ -38,10 +45,11 @@ public class DashboardScene extends AbstractScene {
 		
 		this.settingsButton.setPrefWidth(200);
 		this.settingsButton.setPrefHeight(40);
-
-		this.settingsButton.setLayoutY(60);
+		
 		this.settingsButton.setOnAction(this::onSettingsButtonClick);
 		this.settingsButton.getStyleClass().add("ui-button");
+		this.settingsButton.setLayoutX(40);
+		this.settingsButton.setLayoutY(40);
 		
 		this.startButton.setPrefWidth(200);
 		this.startButton.setPrefHeight(40);
@@ -58,13 +66,19 @@ public class DashboardScene extends AbstractScene {
 		this.stopButton.setOnAction(this::onStopButtonClick);
 		this.stopButton.getStyleClass().add("ui-button");
 		
+		this.configPane.setLayoutX(1000);
+		this.configPane.setPrefWidth(794);
+		this.configPane.setPrefHeight(768);
+		this.configPane.getStyleClass().add("ui-config-pane");
+		
+		ObservableList<Node> configPanesNodes = this.configPane.getChildren();
+		configPanesNodes.add(settingsButton);
+		
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
 		rootNodes.add(stopButton);
-		rootNodes.add(settingsButton);
 		rootNodes.add(sidebar);
-		
-		AnchorPane.setRightAnchor(settingsButton, 50.0);
+		rootNodes.add(configPane);
 	}
 	
 	
@@ -77,6 +91,18 @@ public class DashboardScene extends AbstractScene {
 	}
 	
 	private void onSettingsButtonClick(ActionEvent event) {
-		
+		if (hide) {					
+			Timeline timeline = new Timeline();
+			KeyFrame kf = new KeyFrame(Duration.millis(500), new KeyValue(configPane.translateXProperty(), -770));
+			timeline.getKeyFrames().add(kf);
+			timeline.play();
+			hide = false;
+		} else {
+			Timeline timeline = new Timeline();
+			KeyFrame kf = new KeyFrame(Duration.millis(500), new KeyValue(configPane.translateXProperty(), +770));
+			timeline.getKeyFrames().add(kf);
+			timeline.play();
+			hide = true;
+		}
 	}
 }
