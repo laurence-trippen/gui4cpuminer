@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class DashboardScene extends AbstractScene {
@@ -17,7 +15,8 @@ public class DashboardScene extends AbstractScene {
 	private AnchorPane configPane;
 	private Button startButton;
 	private Button stopButton;
-	private Button settingsButton;
+	private Button saveButton;
+	private Button defaultButton;
 	private Sidebar sidebar;
 	
 	public DashboardScene() {
@@ -32,7 +31,8 @@ public class DashboardScene extends AbstractScene {
 		this.configPane = new AnchorPane();
 		this.startButton = new Button("Start Mining");
 		this.stopButton = new Button("Stop Mining");
-		this.settingsButton = new Button("Settings");
+		this.saveButton = new Button("Save");
+		this.defaultButton = new Button("Default Settings");
 		this.sidebar = new Sidebar(configPane);
 	}
 
@@ -40,13 +40,19 @@ public class DashboardScene extends AbstractScene {
 	protected void defineScene() {
 		this.getStylesheets().add(getClass().getResource(Resources.CSS).toExternalForm());
 		
-		this.settingsButton.setPrefWidth(200);
-		this.settingsButton.setPrefHeight(40);
+		this.saveButton.setPrefWidth(180);
+		this.saveButton.setPrefHeight(40);	
+		this.saveButton.setOnAction(this::onSaveButtonClick);
+		this.saveButton.getStyleClass().add("ui-button");
+		this.saveButton.setLayoutX(60);
+		this.saveButton.setLayoutY(60);
 		
-		this.settingsButton.setOnAction(this::onSettingsButtonClick);
-		this.settingsButton.getStyleClass().add("ui-button");
-		this.settingsButton.setLayoutX(40);
-		this.settingsButton.setLayoutY(40);
+		this.defaultButton.setPrefWidth(180);
+		this.defaultButton.setPrefHeight(40);	
+		this.defaultButton.setOnAction(this::onDefaultButtonClick);
+		this.defaultButton.getStyleClass().add("ui-button");
+		this.defaultButton.setLayoutX(250);
+		this.defaultButton.setLayoutY(60);
 		
 		this.startButton.setPrefWidth(200);
 		this.startButton.setPrefHeight(40);
@@ -69,7 +75,8 @@ public class DashboardScene extends AbstractScene {
 		this.configPane.getStyleClass().add("ui-config-pane");
 		
 		ObservableList<Node> configPanesNodes = this.configPane.getChildren();
-		configPanesNodes.add(settingsButton);
+		configPanesNodes.add(saveButton);
+		configPanesNodes.add(defaultButton);
 		
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
@@ -87,7 +94,11 @@ public class DashboardScene extends AbstractScene {
 		
 	}
 	
-	private void onSettingsButtonClick(ActionEvent event) {
+	private void onSaveButtonClick(ActionEvent event) {
+		
+	}
+	
+	private void onDefaultButtonClick(ActionEvent event) {
 		
 	}
 }
