@@ -1,12 +1,12 @@
 package com.laurencetrippen.gui4cpuminer.view.stage;
 
-import com.laurencetrippen.gui4cpuminer.view.scene.DashboardScene;
+import com.laurencetrippen.gui4cpuminer.view.scene.MainScene;
 
 import javafx.stage.Stage;
 
 public class MainStage extends Stage {
 	
-	private DashboardScene dashboardScene = new DashboardScene();
+	private MainScene dashboardScene = new MainScene();
 	
 	public MainStage(String title) {
 		this.setTitle(title);

@@ -9,7 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
-public class DashboardScene extends AbstractScene {
+public class MainScene extends AbstractScene {
 
 	private AnchorPane root;
 	private AnchorPane configPane;
@@ -19,7 +19,7 @@ public class DashboardScene extends AbstractScene {
 	private Button defaultButton;
 	private Sidebar sidebar;
 	
-	public DashboardScene() {
+	public MainScene() {
 		super(new AnchorPane(), 1024, 768);
 		this.initScene();
 		this.defineScene();
