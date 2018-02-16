@@ -3,19 +3,16 @@ package com.laurencetrippen.gui4cpuminer.view.scene;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
 public class DashboardScene extends AbstractScene {
 
-	private boolean hide = true;
 	private AnchorPane root;
 	private AnchorPane configPane;
 	private Button startButton;
@@ -36,7 +33,7 @@ public class DashboardScene extends AbstractScene {
 		this.startButton = new Button("Start Mining");
 		this.stopButton = new Button("Stop Mining");
 		this.settingsButton = new Button("Settings");
-		this.sidebar = new Sidebar();
+		this.sidebar = new Sidebar(configPane);
 	}
 
 	@Override
@@ -65,9 +62,9 @@ public class DashboardScene extends AbstractScene {
 		this.stopButton.setLayoutY(60);
 		this.stopButton.setOnAction(this::onStopButtonClick);
 		this.stopButton.getStyleClass().add("ui-button");
-		
-		this.configPane.setLayoutX(1000);
-		this.configPane.setPrefWidth(794);
+
+		this.configPane.setLayoutX(-624);
+		this.configPane.setPrefWidth(824);
 		this.configPane.setPrefHeight(768);
 		this.configPane.getStyleClass().add("ui-config-pane");
 		
@@ -77,8 +74,8 @@ public class DashboardScene extends AbstractScene {
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
 		rootNodes.add(stopButton);
-		rootNodes.add(sidebar);
 		rootNodes.add(configPane);
+		rootNodes.add(sidebar);
 	}
 	
 	
@@ -91,18 +88,6 @@ public class DashboardScene extends AbstractScene {
 	}
 	
 	private void onSettingsButtonClick(ActionEvent event) {
-		if (hide) {					
-			Timeline timeline = new Timeline();
-			KeyFrame kf = new KeyFrame(Duration.millis(500), new KeyValue(configPane.translateXProperty(), -770));
-			timeline.getKeyFrames().add(kf);
-			timeline.play();
-			hide = false;
-		} else {
-			Timeline timeline = new Timeline();
-			KeyFrame kf = new KeyFrame(Duration.millis(500), new KeyValue(configPane.translateXProperty(), +770));
-			timeline.getKeyFrames().add(kf);
-			timeline.play();
-			hide = true;
-		}
+		
 	}
 }

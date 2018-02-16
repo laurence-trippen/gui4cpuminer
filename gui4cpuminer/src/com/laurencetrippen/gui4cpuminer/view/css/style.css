@@ -1,5 +1,6 @@
 .ui-sidebar {
 	-fx-background-color: #333333;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 .ui-sidebar-button {
