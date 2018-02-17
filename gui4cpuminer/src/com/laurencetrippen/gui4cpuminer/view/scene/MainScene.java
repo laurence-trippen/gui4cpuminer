@@ -3,6 +3,7 @@ package com.laurencetrippen.gui4cpuminer.view.scene;
 import java.io.File;
 
 import com.laurencetrippen.gui4cpuminer.model.ConfigurationManager;
+import com.laurencetrippen.gui4cpuminer.model.MiningConfiguration;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
@@ -123,30 +124,35 @@ public class MainScene extends AbstractScene {
 		this.usernameTextField.setPrefWidth(200);
 		this.usernameTextField.setLayoutX(60);
 		this.usernameTextField.setLayoutY(150);
+		this.usernameTextField.setText(configurationManager.getMiningConfiguration().getUsername());
 		
 		this.passwordField.getStyleClass().add("ui-textfield");
 		this.passwordField.setPromptText("Password");
 		this.passwordField.setPrefWidth(200);
 		this.passwordField.setLayoutX(270);
 		this.passwordField.setLayoutY(150);
+		this.passwordField.setText(configurationManager.getMiningConfiguration().getPassword());
 		
 		this.urlTextField.getStyleClass().add("ui-textfield");
 		this.urlTextField.setPromptText("URL");
 		this.urlTextField.setPrefWidth(240);
 		this.urlTextField.setLayoutX(480);
 		this.urlTextField.setLayoutY(150);
+		this.urlTextField.setText(configurationManager.getMiningConfiguration().getUrl());
 		
 		this.coinbaseAddressField.getStyleClass().add("ui-textfield");
 		this.coinbaseAddressField.setPromptText("Coinbase address");
 		this.coinbaseAddressField.setPrefWidth(325);
 		this.coinbaseAddressField.setLayoutX(60);
 		this.coinbaseAddressField.setLayoutY(210);
+		this.coinbaseAddressField.setText(configurationManager.getMiningConfiguration().getCoinbaseAddress());
 		
 		this.coinbaseSignatureField.getStyleClass().add("ui-textfield");
 		this.coinbaseSignatureField.setPromptText("Coinbase signature");
 		this.coinbaseSignatureField.setPrefWidth(325);
 		this.coinbaseSignatureField.setLayoutX(395);
 		this.coinbaseSignatureField.setLayoutY(210);
+		this.coinbaseSignatureField.setText(configurationManager.getMiningConfiguration().getCoinbaseSig());
 		
 		this.jsonPathTextfield.getStyleClass().add("ui-textfield");
 		this.jsonPathTextfield.setPromptText("JSON configuration path");
@@ -154,6 +160,7 @@ public class MainScene extends AbstractScene {
 		this.jsonPathTextfield.setPrefWidth(500);
 		this.jsonPathTextfield.setLayoutX(60);
 		this.jsonPathTextfield.setLayoutY(270);
+		this.jsonPathTextfield.setText(configurationManager.getMiningConfiguration().getJsonConfigPath());
 		
 		this.selectButton.getStyleClass().add("ui-button");
 		this.selectButton.setPrefWidth(140);
@@ -163,6 +170,7 @@ public class MainScene extends AbstractScene {
 		this.selectButton.setOnAction(this::onSelectButtonClick);
 		
 		this.maxThreadsTextField.getStyleClass().add("ui-textfield");
+		this.maxThreadsTextField.setText(String.valueOf(configurationManager.getMiningConfiguration().getThreads()));
 		this.maxThreadsTextField.setPrefWidth(160);
 		this.maxThreadsTextField.setLayoutX(60);
 		this.maxThreadsTextField.setLayoutY(330);
@@ -177,6 +185,7 @@ public class MainScene extends AbstractScene {
 	    });
 		
 		this.timeoutTextField.getStyleClass().add("ui-textfield");
+		this.timeoutTextField.setText(String.valueOf(configurationManager.getMiningConfiguration().getTimeout()));
 		this.timeoutTextField.setPrefWidth(160);
 		this.timeoutTextField.setLayoutX(230);
 		this.timeoutTextField.setLayoutY(330);
@@ -191,6 +200,7 @@ public class MainScene extends AbstractScene {
 	    });
 		
 		this.maxRetriesTextField.getStyleClass().add("ui-textfield");
+		this.maxRetriesTextField.setText(String.valueOf(configurationManager.getMiningConfiguration().getRetries()));
 		this.maxRetriesTextField.setPrefWidth(160);
 		this.maxRetriesTextField.setLayoutX(400);
 		this.maxRetriesTextField.setLayoutY(330);
@@ -205,6 +215,7 @@ public class MainScene extends AbstractScene {
 	    });
 		
 		this.retryPauseTextField.getStyleClass().add("ui-textfield");
+		this.retryPauseTextField.setText(String.valueOf(configurationManager.getMiningConfiguration().getRetryPause()));
 		this.retryPauseTextField.setPrefWidth(160);
 		this.retryPauseTextField.setLayoutX(570);
 		this.retryPauseTextField.setLayoutY(330);
@@ -219,6 +230,7 @@ public class MainScene extends AbstractScene {
 	    });
 		
 		this.scanTimeTextField.getStyleClass().add("ui-textfield");
+		this.scanTimeTextField.setText(String.valueOf(configurationManager.getMiningConfiguration().getScantime()));
 		this.scanTimeTextField.setPrefWidth(220);
 		this.scanTimeTextField.setLayoutX(60);
 		this.scanTimeTextField.setLayoutY(390);
@@ -234,36 +246,47 @@ public class MainScene extends AbstractScene {
 		
 		this.longPollCheckBox.setLayoutX(60);
 		this.longPollCheckBox.setLayoutY(500);
+		this.longPollCheckBox.setSelected(!configurationManager.getMiningConfiguration().isNoLongPoll());
 		
 		this.getworkCheckBox.setLayoutX(160);
 		this.getworkCheckBox.setLayoutY(500);
+		this.getworkCheckBox.setSelected(!configurationManager.getMiningConfiguration().isNoGetwork());
 		
 		this.gbtCheckBox.setLayoutX(290);
 		this.gbtCheckBox.setLayoutY(500);
+		this.gbtCheckBox.setSelected(!configurationManager.getMiningConfiguration().isNoGbt());
 		
 		this.stratumCheckBox.setLayoutX(400);
 		this.stratumCheckBox.setLayoutY(500);
+		this.stratumCheckBox.setSelected(!configurationManager.getMiningConfiguration().isNoStratum());
 		
 		this.redirectCheckBox.setLayoutX(530);
 		this.redirectCheckBox.setLayoutY(500);
+		this.redirectCheckBox.setSelected(!configurationManager.getMiningConfiguration().isNoRedirect());
 		
 		this.quietCheckBox.setLayoutX(60);
 		this.quietCheckBox.setLayoutY(550);
+		this.quietCheckBox.setSelected(configurationManager.getMiningConfiguration().isQuiet());
 		
 		this.debugCheckBox.setLayoutX(160);
 		this.debugCheckBox.setLayoutY(550);
+		this.debugCheckBox.setSelected(configurationManager.getMiningConfiguration().isDebug());
 		
 		this.protocolDumbCheckBox.setLayoutX(260);
 		this.protocolDumbCheckBox.setLayoutY(550);
+		this.protocolDumbCheckBox.setSelected(configurationManager.getMiningConfiguration().isEnabledProtocolDumb());
 		
 		this.syslogCheckBox.setLayoutX(440);
 		this.syslogCheckBox.setLayoutY(550);
+		this.syslogCheckBox.setSelected(configurationManager.getMiningConfiguration().isSyslog());
 		
 		this.runInBackgroundCheckBox.setLayoutX(60);
 		this.runInBackgroundCheckBox.setLayoutY(600);
+		this.runInBackgroundCheckBox.setSelected(configurationManager.getMiningConfiguration().isRunInBackground());
 		
 		this.benchmarkCheckBox.setLayoutX(230);
 		this.benchmarkCheckBox.setLayoutY(600);
+		this.benchmarkCheckBox.setSelected(configurationManager.getMiningConfiguration().isRunBenchmark());
 		
 		this.consoleTextArea.setLayoutX(270);
 		this.consoleTextArea.setLayoutY(180);
@@ -341,7 +364,25 @@ public class MainScene extends AbstractScene {
 	}
 	
 	private void onSaveButtonClick(ActionEvent event) {
-		
+		MiningConfiguration mc = configurationManager.getMiningConfiguration();
+		mc.setUsername(usernameTextField.getText());
+		mc.setPassword(passwordField.getText());
+		mc.setUrl(urlTextField.getText());
+		mc.setCoinbaseAddress(coinbaseAddressField.getText());
+		mc.setCoinbaseSig(coinbaseSignatureField.getText());
+		mc.setJsonConfigPath(jsonPathTextfield.getText());
+		mc.setThreads(Integer.valueOf(maxThreadsTextField.getText()));
+		mc.setRetries(Integer.valueOf(maxRetriesTextField.getText()));
+		mc.setRetryPause(Integer.valueOf(retryPauseTextField.getText()));
+		mc.setTimeout(Integer.valueOf(timeoutTextField.getText()));
+		mc.setScantime(Integer.valueOf(scanTimeTextField.getText()));
+		mc.setNoLongPoll(!longPollCheckBox.isSelected());
+		mc.setNoGetwork(!getworkCheckBox.isSelected());
+		mc.setNoGbt(!gbtCheckBox.isSelected());
+		mc.setNoStratum(!stratumCheckBox.isSelected());
+		mc.setNoRedirect(!redirectCheckBox.isSelected());
+		mc.setQuiet(quietCheckBox.isSelected());
+		mc.setDebug(debugCheckBox.isSelected());
 	}
 	
 	private void onDefaultButtonClick(ActionEvent event) {
