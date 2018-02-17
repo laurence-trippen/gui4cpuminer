@@ -383,6 +383,11 @@ public class MainScene extends AbstractScene {
 		mc.setNoRedirect(!redirectCheckBox.isSelected());
 		mc.setQuiet(quietCheckBox.isSelected());
 		mc.setDebug(debugCheckBox.isSelected());
+		mc.setEnabledProtocolDumb(protocolDumbCheckBox.isSelected());
+		mc.setSyslog(syslogCheckBox.isSelected());
+		mc.setRunInBackground(runInBackgroundCheckBox.isSelected());
+		mc.setRunBenchmark(benchmarkCheckBox.isSelected());
+		configurationManager.save();
 	}
 	
 	private void onDefaultButtonClick(ActionEvent event) {
