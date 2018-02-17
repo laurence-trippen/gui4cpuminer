@@ -2,7 +2,7 @@ package com.laurencetrippen.gui4cpuminer.model;
 
 public class MiningConfiguration {
 
-	private Algorithm algorithm;
+	private String[] algorithms;
 	private String username;
 	private String password;
 	private String url;
@@ -26,12 +26,15 @@ public class MiningConfiguration {
 	private boolean runInBackground = false;
 	private boolean runBenchmark = false;
 
-	public Algorithm getAlgorithm() {
-		return algorithm;
+	public MiningConfiguration() {
+		this.algorithms = new String[3];
+		this.algorithms[0] = "Scrypt";
+		this.algorithms[1] = "sha256d";
+		this.algorithms[2] = "SHA_256d";
 	}
-
-	public void setAlgorithm(Algorithm algorithm) {
-		this.algorithm = algorithm;
+	
+	public String[] getAlgorithms() {
+		return algorithms;
 	}
 
 	public String getUsername() {

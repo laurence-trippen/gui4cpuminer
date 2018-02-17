@@ -1,18 +1,23 @@
 package com.laurencetrippen.gui4cpuminer.view.scene;
 
+import com.laurencetrippen.gui4cpuminer.model.MiningConfiguration;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class MainScene extends AbstractScene {
 
+	private MiningConfiguration miningConfiguration;
 	private AnchorPane root;
 	private AnchorPane configPane;
 	private Button startButton;
@@ -26,10 +31,28 @@ public class MainScene extends AbstractScene {
 	private TextField coinbaseAddressField;
 	private TextField coinbaseSignatureField;
 	private TextField jsonPathTextfield;
+	private TextField maxThreadsTextField;
+	private TextField timeoutTextField;
+	private TextField maxRetriesTextField;
+	private TextField retryPauseTextField;
+	private TextField scanTimeTextField;
+	private ComboBox<String> algorithmComboBox;
+	private CheckBox longPollCheckBox;
+	private CheckBox getworkCheckBox;
+	private CheckBox gbtCheckBox;
+	private CheckBox stratumCheckBox;
+	private CheckBox redirectCheckBox;
+	private CheckBox quietCheckBox;
+	private CheckBox debugCheckBox;
+	private CheckBox protocolDumbCheckBox;
+	private CheckBox syslogCheckBox;
+	private CheckBox runInBackgroundCheckBox;
+	private CheckBox benchmarkCheckBox;
 	private PasswordField passwordField;
 	
 	public MainScene() {
 		super(new AnchorPane(), 1024, 768);
+		this.miningConfiguration = new MiningConfiguration();
 		this.initScene();
 		this.defineScene();
 	}
@@ -49,7 +72,24 @@ public class MainScene extends AbstractScene {
 		this.coinbaseAddressField = new TextField();
 		this.coinbaseSignatureField = new TextField();
 		this.jsonPathTextfield = new TextField();
+		this.maxThreadsTextField = new TextField();
+		this.timeoutTextField = new TextField();
+		this.maxRetriesTextField = new TextField();
+		this.retryPauseTextField = new TextField();
+		this.scanTimeTextField = new TextField();
+		this.algorithmComboBox = new ComboBox<>();
 		this.passwordField = new PasswordField();
+		this.longPollCheckBox = new CheckBox("Long poll");
+		this.getworkCheckBox = new CheckBox("Enable getwork");
+		this.gbtCheckBox = new CheckBox("Enable GBT");
+		this.stratumCheckBox = new CheckBox("Enable Stratum");
+		this.redirectCheckBox = new CheckBox("Enable Redirect");
+		this.quietCheckBox = new CheckBox("is quiet");
+		this.debugCheckBox = new CheckBox("is debug");
+		this.protocolDumbCheckBox = new CheckBox("Enable Protocol Dumb");
+		this.syslogCheckBox = new CheckBox("Enable Syslog");
+		this.runInBackgroundCheckBox = new CheckBox("Run in background");
+		this.benchmarkCheckBox = new CheckBox("Run as benchmark");
 	}
 
 	@Override
@@ -89,19 +129,19 @@ public class MainScene extends AbstractScene {
 		this.urlTextField.setLayoutY(150);
 		
 		this.coinbaseAddressField.getStyleClass().add("ui-textfield");
-		this.coinbaseAddressField.setPromptText("Coinbase Address");
+		this.coinbaseAddressField.setPromptText("Coinbase address");
 		this.coinbaseAddressField.setPrefWidth(325);
 		this.coinbaseAddressField.setLayoutX(60);
 		this.coinbaseAddressField.setLayoutY(210);
 		
 		this.coinbaseSignatureField.getStyleClass().add("ui-textfield");
-		this.coinbaseSignatureField.setPromptText("Coinbase Signature");
+		this.coinbaseSignatureField.setPromptText("Coinbase signature");
 		this.coinbaseSignatureField.setPrefWidth(325);
 		this.coinbaseSignatureField.setLayoutX(395);
 		this.coinbaseSignatureField.setLayoutY(210);
 		
 		this.jsonPathTextfield.getStyleClass().add("ui-textfield");
-		this.jsonPathTextfield.setPromptText("JSON Configuration Path");
+		this.jsonPathTextfield.setPromptText("JSON configuration path");
 		this.jsonPathTextfield.setEditable(false);
 		this.jsonPathTextfield.setPrefWidth(500);
 		this.jsonPathTextfield.setLayoutX(60);
@@ -113,6 +153,69 @@ public class MainScene extends AbstractScene {
 		this.selectButton.setLayoutX(580);
 		this.selectButton.setLayoutY(270);
 		this.selectButton.setOnAction(this::onSelectButtonClick);
+		
+		this.maxThreadsTextField.getStyleClass().add("ui-textfield");
+		this.maxThreadsTextField.setPrefWidth(160);
+		this.maxThreadsTextField.setLayoutX(60);
+		this.maxThreadsTextField.setLayoutY(330);
+		this.maxThreadsTextField.setPromptText("Max. threads");
+		
+		this.timeoutTextField.getStyleClass().add("ui-textfield");
+		this.timeoutTextField.setPrefWidth(160);
+		this.timeoutTextField.setLayoutX(230);
+		this.timeoutTextField.setLayoutY(330);
+		this.timeoutTextField.setPromptText("Timeout");
+		
+		this.maxRetriesTextField.getStyleClass().add("ui-textfield");
+		this.maxRetriesTextField.setPrefWidth(160);
+		this.maxRetriesTextField.setLayoutX(400);
+		this.maxRetriesTextField.setLayoutY(330);
+		this.maxRetriesTextField.setPromptText("Max. retries");
+		
+		this.retryPauseTextField.getStyleClass().add("ui-textfield");
+		this.retryPauseTextField.setPrefWidth(160);
+		this.retryPauseTextField.setLayoutX(570);
+		this.retryPauseTextField.setLayoutY(330);
+		this.retryPauseTextField.setPromptText("Retry pause");
+		
+		this.scanTimeTextField.getStyleClass().add("ui-textfield");
+		this.scanTimeTextField.setPrefWidth(220);
+		this.scanTimeTextField.setLayoutX(60);
+		this.scanTimeTextField.setLayoutY(390);
+		this.scanTimeTextField.setPromptText("Scantime");
+		
+		this.longPollCheckBox.setLayoutX(60);
+		this.longPollCheckBox.setLayoutY(500);
+		
+		this.getworkCheckBox.setLayoutX(160);
+		this.getworkCheckBox.setLayoutY(500);
+		
+		this.gbtCheckBox.setLayoutX(290);
+		this.gbtCheckBox.setLayoutY(500);
+		
+		this.stratumCheckBox.setLayoutX(400);
+		this.stratumCheckBox.setLayoutY(500);
+		
+		this.redirectCheckBox.setLayoutX(530);
+		this.redirectCheckBox.setLayoutY(500);
+		
+		this.quietCheckBox.setLayoutX(60);
+		this.quietCheckBox.setLayoutY(550);
+		
+		this.debugCheckBox.setLayoutX(160);
+		this.debugCheckBox.setLayoutY(550);
+		
+		this.protocolDumbCheckBox.setLayoutX(260);
+		this.protocolDumbCheckBox.setLayoutY(550);
+		
+		this.syslogCheckBox.setLayoutX(440);
+		this.syslogCheckBox.setLayoutY(550);
+		
+		this.runInBackgroundCheckBox.setLayoutX(60);
+		this.runInBackgroundCheckBox.setLayoutY(600);
+		
+		this.benchmarkCheckBox.setLayoutX(230);
+		this.benchmarkCheckBox.setLayoutY(600);
 		
 		this.startButton.setPrefWidth(200);
 		this.startButton.setPrefHeight(40);
@@ -129,6 +232,12 @@ public class MainScene extends AbstractScene {
 		this.stopButton.setOnAction(this::onStopButtonClick);
 		this.stopButton.getStyleClass().add("ui-button");
 
+		this.algorithmComboBox.setLayoutX(764);
+		this.algorithmComboBox.setLayoutY(60);
+		this.algorithmComboBox.setPrefSize(200, 40);
+		this.algorithmComboBox.setPromptText("Algoritm");
+		this.algorithmComboBox.setItems(FXCollections.observableArrayList(miningConfiguration.getAlgorithms()));
+		
 		this.configPane.setLayoutX(-624);
 		this.configPane.setPrefWidth(824);
 		this.configPane.setPrefHeight(768);
@@ -144,14 +253,30 @@ public class MainScene extends AbstractScene {
 		configPanesNodes.add(coinbaseSignatureField);
 		configPanesNodes.add(jsonPathTextfield);
 		configPanesNodes.add(selectButton);
+		configPanesNodes.add(maxThreadsTextField);
+		configPanesNodes.add(timeoutTextField);
+		configPanesNodes.add(maxRetriesTextField);
+		configPanesNodes.add(retryPauseTextField);
+		configPanesNodes.add(scanTimeTextField);
+		configPanesNodes.add(longPollCheckBox);
+		configPanesNodes.add(getworkCheckBox);
+		configPanesNodes.add(gbtCheckBox);
+		configPanesNodes.add(stratumCheckBox);
+		configPanesNodes.add(redirectCheckBox);
+		configPanesNodes.add(quietCheckBox);
+		configPanesNodes.add(debugCheckBox);
+		configPanesNodes.add(protocolDumbCheckBox);
+		configPanesNodes.add(syslogCheckBox);
+		configPanesNodes.add(runInBackgroundCheckBox);
+		configPanesNodes.add(benchmarkCheckBox);
 		
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
 		rootNodes.add(stopButton);
+		rootNodes.add(algorithmComboBox);
 		rootNodes.add(configPane);
 		rootNodes.add(sidebar);
 	}
-	
 	
 	private void onStartButtonClick(ActionEvent event) {
 		
