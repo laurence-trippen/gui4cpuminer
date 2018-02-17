@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -36,6 +37,7 @@ public class MainScene extends AbstractScene {
 	private TextField maxRetriesTextField;
 	private TextField retryPauseTextField;
 	private TextField scanTimeTextField;
+	private TextArea consoleTextArea;
 	private ComboBox<String> algorithmComboBox;
 	private CheckBox longPollCheckBox;
 	private CheckBox getworkCheckBox;
@@ -67,6 +69,7 @@ public class MainScene extends AbstractScene {
 		this.selectButton = new Button("...");
 		this.defaultButton = new Button("Default Settings");
 		this.sidebar = new Sidebar(configPane);
+		this.consoleTextArea = new TextArea();
 		this.usernameTextField = new TextField();
 		this.urlTextField = new TextField();
 		this.coinbaseAddressField = new TextField();
@@ -217,6 +220,11 @@ public class MainScene extends AbstractScene {
 		this.benchmarkCheckBox.setLayoutX(230);
 		this.benchmarkCheckBox.setLayoutY(600);
 		
+		this.consoleTextArea.setLayoutX(270);
+		this.consoleTextArea.setLayoutY(180);
+		this.consoleTextArea.setPrefSize(694, 500);
+		this.consoleTextArea.setEditable(false);
+		
 		this.startButton.setPrefWidth(200);
 		this.startButton.setPrefHeight(40);
 		this.startButton.setLayoutX(270);
@@ -273,6 +281,7 @@ public class MainScene extends AbstractScene {
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
 		rootNodes.add(stopButton);
+		rootNodes.add(consoleTextArea);
 		rootNodes.add(algorithmComboBox);
 		rootNodes.add(configPane);
 		rootNodes.add(sidebar);
