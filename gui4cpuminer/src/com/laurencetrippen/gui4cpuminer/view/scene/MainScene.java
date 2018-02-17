@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class MainScene extends AbstractScene {
@@ -17,7 +19,14 @@ public class MainScene extends AbstractScene {
 	private Button stopButton;
 	private Button saveButton;
 	private Button defaultButton;
+	private Button selectButton;
 	private Sidebar sidebar;
+	private TextField usernameTextField;
+	private TextField urlTextField;
+	private TextField coinbaseAddressField;
+	private TextField coinbaseSignatureField;
+	private TextField jsonPathTextfield;
+	private PasswordField passwordField;
 	
 	public MainScene() {
 		super(new AnchorPane(), 1024, 768);
@@ -32,8 +41,15 @@ public class MainScene extends AbstractScene {
 		this.startButton = new Button("Start Mining");
 		this.stopButton = new Button("Stop Mining");
 		this.saveButton = new Button("Save");
+		this.selectButton = new Button("...");
 		this.defaultButton = new Button("Default Settings");
 		this.sidebar = new Sidebar(configPane);
+		this.usernameTextField = new TextField();
+		this.urlTextField = new TextField();
+		this.coinbaseAddressField = new TextField();
+		this.coinbaseSignatureField = new TextField();
+		this.jsonPathTextfield = new TextField();
+		this.passwordField = new PasswordField();
 	}
 
 	@Override
@@ -53,6 +69,50 @@ public class MainScene extends AbstractScene {
 		this.defaultButton.getStyleClass().add("ui-button");
 		this.defaultButton.setLayoutX(250);
 		this.defaultButton.setLayoutY(60);
+		
+		this.usernameTextField.getStyleClass().add("ui-textfield");
+		this.usernameTextField.setPromptText("Username");
+		this.usernameTextField.setPrefWidth(200);
+		this.usernameTextField.setLayoutX(60);
+		this.usernameTextField.setLayoutY(150);
+		
+		this.passwordField.getStyleClass().add("ui-textfield");
+		this.passwordField.setPromptText("Password");
+		this.passwordField.setPrefWidth(200);
+		this.passwordField.setLayoutX(270);
+		this.passwordField.setLayoutY(150);
+		
+		this.urlTextField.getStyleClass().add("ui-textfield");
+		this.urlTextField.setPromptText("URL");
+		this.urlTextField.setPrefWidth(240);
+		this.urlTextField.setLayoutX(480);
+		this.urlTextField.setLayoutY(150);
+		
+		this.coinbaseAddressField.getStyleClass().add("ui-textfield");
+		this.coinbaseAddressField.setPromptText("Coinbase Address");
+		this.coinbaseAddressField.setPrefWidth(325);
+		this.coinbaseAddressField.setLayoutX(60);
+		this.coinbaseAddressField.setLayoutY(210);
+		
+		this.coinbaseSignatureField.getStyleClass().add("ui-textfield");
+		this.coinbaseSignatureField.setPromptText("Coinbase Signature");
+		this.coinbaseSignatureField.setPrefWidth(325);
+		this.coinbaseSignatureField.setLayoutX(395);
+		this.coinbaseSignatureField.setLayoutY(210);
+		
+		this.jsonPathTextfield.getStyleClass().add("ui-textfield");
+		this.jsonPathTextfield.setPromptText("JSON Configuration Path");
+		this.jsonPathTextfield.setEditable(false);
+		this.jsonPathTextfield.setPrefWidth(500);
+		this.jsonPathTextfield.setLayoutX(60);
+		this.jsonPathTextfield.setLayoutY(270);
+		
+		this.selectButton.getStyleClass().add("ui-button");
+		this.selectButton.setPrefWidth(140);
+		this.selectButton.setPrefHeight(35);
+		this.selectButton.setLayoutX(580);
+		this.selectButton.setLayoutY(270);
+		this.selectButton.setOnAction(this::onSelectButtonClick);
 		
 		this.startButton.setPrefWidth(200);
 		this.startButton.setPrefHeight(40);
@@ -77,6 +137,13 @@ public class MainScene extends AbstractScene {
 		ObservableList<Node> configPanesNodes = this.configPane.getChildren();
 		configPanesNodes.add(saveButton);
 		configPanesNodes.add(defaultButton);
+		configPanesNodes.add(usernameTextField);
+		configPanesNodes.add(passwordField);
+		configPanesNodes.add(urlTextField);
+		configPanesNodes.add(coinbaseAddressField);
+		configPanesNodes.add(coinbaseSignatureField);
+		configPanesNodes.add(jsonPathTextfield);
+		configPanesNodes.add(selectButton);
 		
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
@@ -99,6 +166,10 @@ public class MainScene extends AbstractScene {
 	}
 	
 	private void onDefaultButtonClick(ActionEvent event) {
+		
+	}
+	
+	private void onSelectButtonClick(ActionEvent event) {
 		
 	}
 }
