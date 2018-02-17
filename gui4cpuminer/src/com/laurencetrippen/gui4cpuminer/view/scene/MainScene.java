@@ -4,6 +4,8 @@ import com.laurencetrippen.gui4cpuminer.model.MiningConfiguration;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -162,30 +164,70 @@ public class MainScene extends AbstractScene {
 		this.maxThreadsTextField.setLayoutX(60);
 		this.maxThreadsTextField.setLayoutY(330);
 		this.maxThreadsTextField.setPromptText("Max. threads");
+		this.maxThreadsTextField.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	            if (!newValue.matches("\\d*")) {
+	            		maxThreadsTextField.setText(newValue.replaceAll("[^\\d]", ""));
+	            }
+	        }
+	    });
 		
 		this.timeoutTextField.getStyleClass().add("ui-textfield");
 		this.timeoutTextField.setPrefWidth(160);
 		this.timeoutTextField.setLayoutX(230);
 		this.timeoutTextField.setLayoutY(330);
 		this.timeoutTextField.setPromptText("Timeout");
+		this.timeoutTextField.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	            if (!newValue.matches("\\d*")) {
+	            		timeoutTextField.setText(newValue.replaceAll("[^\\d]", ""));
+	            }
+	        }
+	    });
 		
 		this.maxRetriesTextField.getStyleClass().add("ui-textfield");
 		this.maxRetriesTextField.setPrefWidth(160);
 		this.maxRetriesTextField.setLayoutX(400);
 		this.maxRetriesTextField.setLayoutY(330);
 		this.maxRetriesTextField.setPromptText("Max. retries");
+		this.maxRetriesTextField.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	            if (!newValue.matches("\\d*")) {
+	            		maxRetriesTextField.setText(newValue.replaceAll("[^\\d]", ""));
+	            }
+	        }
+	    });
 		
 		this.retryPauseTextField.getStyleClass().add("ui-textfield");
 		this.retryPauseTextField.setPrefWidth(160);
 		this.retryPauseTextField.setLayoutX(570);
 		this.retryPauseTextField.setLayoutY(330);
 		this.retryPauseTextField.setPromptText("Retry pause");
+		this.retryPauseTextField.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	            if (!newValue.matches("\\d*")) {
+	            		retryPauseTextField.setText(newValue.replaceAll("[^\\d]", ""));
+	            }
+	        }
+	    });
 		
 		this.scanTimeTextField.getStyleClass().add("ui-textfield");
 		this.scanTimeTextField.setPrefWidth(220);
 		this.scanTimeTextField.setLayoutX(60);
 		this.scanTimeTextField.setLayoutY(390);
 		this.scanTimeTextField.setPromptText("Scantime");
+		this.scanTimeTextField.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	            if (!newValue.matches("\\d*")) {
+	            		scanTimeTextField.setText(newValue.replaceAll("[^\\d]", ""));
+	            }
+	        }
+	    });
 		
 		this.longPollCheckBox.setLayoutX(60);
 		this.longPollCheckBox.setLayoutY(500);
