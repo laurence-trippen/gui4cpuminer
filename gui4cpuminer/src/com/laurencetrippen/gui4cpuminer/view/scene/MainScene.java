@@ -1,6 +1,8 @@
 package com.laurencetrippen.gui4cpuminer.view.scene;
 
-import com.laurencetrippen.gui4cpuminer.model.MiningConfiguration;
+import java.io.File;
+
+import com.laurencetrippen.gui4cpuminer.model.ConfigurationManager;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
@@ -17,10 +19,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 public class MainScene extends AbstractScene {
 
-	private MiningConfiguration miningConfiguration;
+	private ConfigurationManager configurationManager;
 	private AnchorPane root;
 	private AnchorPane configPane;
 	private Button startButton;
@@ -56,7 +59,7 @@ public class MainScene extends AbstractScene {
 	
 	public MainScene() {
 		super(new AnchorPane(), 1024, 768);
-		this.miningConfiguration = new MiningConfiguration();
+		this.configurationManager = ConfigurationManager.instance();
 		this.initScene();
 		this.defineScene();
 	}
@@ -286,7 +289,7 @@ public class MainScene extends AbstractScene {
 		this.algorithmComboBox.setLayoutY(60);
 		this.algorithmComboBox.setPrefSize(200, 40);
 		this.algorithmComboBox.setPromptText("Algoritm");
-		this.algorithmComboBox.setItems(FXCollections.observableArrayList(miningConfiguration.getAlgorithms()));
+		this.algorithmComboBox.setItems(FXCollections.observableArrayList(configurationManager.getMiningConfiguration().getAlgorithms()));
 		
 		this.configPane.setLayoutX(-624);
 		this.configPane.setPrefWidth(824);
@@ -328,7 +331,7 @@ public class MainScene extends AbstractScene {
 		rootNodes.add(configPane);
 		rootNodes.add(sidebar);
 	}
-	
+
 	private void onStartButtonClick(ActionEvent event) {
 		
 	}
@@ -346,6 +349,14 @@ public class MainScene extends AbstractScene {
 	}
 	
 	private void onSelectButtonClick(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file (*.json)", "*.json"));
+		File selectedJsonFile = fileChooser.showOpenDialog(this.getWindow());
 		
+		if (selectedJsonFile != null) {			
+			this.jsonPathTextfield.setText(selectedJsonFile.getAbsolutePath());
+		} else {
+			this.jsonPathTextfield.setText("No File selected!");
+		}
 	}
 }

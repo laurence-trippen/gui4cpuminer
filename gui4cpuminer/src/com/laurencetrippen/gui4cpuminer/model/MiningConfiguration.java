@@ -1,29 +1,77 @@
 package com.laurencetrippen.gui4cpuminer.model;
 
+import com.laurencetrippen.jpg.ConfigFile;
+import com.laurencetrippen.jpg.ConfigProperty;
+
+@ConfigFile(path = Resources.CONFIG_FILE)
 public class MiningConfiguration {
 
 	private String[] algorithms;
+	
+	@ConfigProperty
 	private String username;
+	
+	@ConfigProperty
 	private String password;
+	
+	@ConfigProperty
 	private String url;
+	
+	@ConfigProperty
 	private String coinbaseAddress;
+	
+	@ConfigProperty
 	private String coinbaseSig;
+	
+	@ConfigProperty
 	private String jsonConfigPath;
+	
+	@ConfigProperty
 	private int threads;
+	
+	@ConfigProperty
 	private int retries;
+	
+	@ConfigProperty
 	private int retryPause = 30;
+	
+	@ConfigProperty
 	private int timeout;
+	
+	@ConfigProperty
 	private int scantime;
+	
+	@ConfigProperty
 	private boolean noLongPoll = false;
+	
+	@ConfigProperty
 	private boolean noGetwork = false;
+	
+	@ConfigProperty
 	private boolean noGbt = false;
+	
+	@ConfigProperty
 	private boolean noStratum = false;
+	
+	@ConfigProperty
 	private boolean noRedirect = false;
+	
+	@ConfigProperty
 	private boolean isQuiet = false;
+	
+	@ConfigProperty
 	private boolean isDebug = false;
+	
+	@ConfigProperty
 	private boolean enabledProtocolDumb = false;
+	
+	@ConfigProperty
 	private boolean syslog = false;
+	
+	@ConfigProperty
 	private boolean runInBackground = false;
+	
+	@ConfigProperty
 	private boolean runBenchmark = false;
 
 	public MiningConfiguration() {

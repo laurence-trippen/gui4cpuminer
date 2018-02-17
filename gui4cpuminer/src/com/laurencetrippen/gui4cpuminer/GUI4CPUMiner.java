@@ -1,5 +1,6 @@
 package com.laurencetrippen.gui4cpuminer;
 
+import com.laurencetrippen.gui4cpuminer.model.ConfigurationManager;
 import com.laurencetrippen.gui4cpuminer.view.scene.MainScene;
 
 import javafx.application.Application;
@@ -11,6 +12,7 @@ public class GUI4CPUMiner extends Application {
 	
 	@Override
 	public void init() throws Exception {
+		ConfigurationManager.instance().load();
 		this.mainScene = new MainScene();
 	}
 	
