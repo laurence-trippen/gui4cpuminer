@@ -5,6 +5,7 @@ import java.io.File;
 import com.laurencetrippen.gui4cpuminer.model.ConfigurationManager;
 import com.laurencetrippen.gui4cpuminer.model.MiningConfiguration;
 import com.laurencetrippen.gui4cpuminer.model.Resources;
+import com.laurencetrippen.gui4cpuminer.service.MinerdService;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
 import javafx.beans.value.ChangeListener;
@@ -25,6 +26,7 @@ import javafx.stage.FileChooser;
 public class MainScene extends AbstractScene {
 
 	private ConfigurationManager configurationManager;
+	private MinerdService minerdService;
 	private AnchorPane root;
 	private AnchorPane configPane;
 	private Button startButton;
@@ -61,6 +63,7 @@ public class MainScene extends AbstractScene {
 	public MainScene() {
 		super(new AnchorPane(), 1024, 768);
 		this.configurationManager = ConfigurationManager.instance();
+		this.minerdService = new MinerdService();
 		this.initScene();
 		this.defineScene();
 	}
@@ -356,7 +359,10 @@ public class MainScene extends AbstractScene {
 	}
 
 	private void onStartButtonClick(ActionEvent event) {
-		ProcessBuilder processBuilder = new ProcessBuilder("");
+		this.minerdService.start();
+		this.minerdService.setOnSucceeded((wse) -> {
+			System.out.println("minerd-service succeeded");
+		});
 	}
 	
 	private void onStopButtonClick(ActionEvent event) {
