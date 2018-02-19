@@ -63,7 +63,6 @@ public class MainScene extends AbstractScene {
 	public MainScene() {
 		super(new AnchorPane(), 1024, 768);
 		this.configurationManager = ConfigurationManager.instance();
-		this.minerdService = new MinerdService();
 		this.initScene();
 		this.defineScene();
 	}
@@ -102,6 +101,7 @@ public class MainScene extends AbstractScene {
 		this.syslogCheckBox = new CheckBox("Enable Syslog");
 		this.runInBackgroundCheckBox = new CheckBox("Run in background");
 		this.benchmarkCheckBox = new CheckBox("Run as benchmark");
+		this.minerdService = new MinerdService(this);
 	}
 
 	@Override
@@ -314,7 +314,7 @@ public class MainScene extends AbstractScene {
 		this.algorithmComboBox.setLayoutX(764);
 		this.algorithmComboBox.setLayoutY(60);
 		this.algorithmComboBox.setPrefSize(200, 40);
-		this.algorithmComboBox.setPromptText("Algoritm");
+		this.algorithmComboBox.setPromptText("Algorithm");
 		this.algorithmComboBox.setItems(FXCollections.observableArrayList(configurationManager.getMiningConfiguration().getAlgorithms()));
 		
 		this.configPane.setLayoutX(-624);
@@ -356,6 +356,10 @@ public class MainScene extends AbstractScene {
 		rootNodes.add(algorithmComboBox);
 		rootNodes.add(configPane);
 		rootNodes.add(sidebar);
+	}
+	
+	public void consoleLog(String line) {
+		this.consoleTextArea.appendText(line);
 	}
 
 	private void onStartButtonClick(ActionEvent event) {

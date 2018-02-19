@@ -118,17 +118,18 @@ public class Minerd {
 			}
 		} else if (SystemUtils.IS_OS_MAC || SystemUtils.IS_OS_MAC_OSX) {
 			if (SystemUtils.OS_ARCH.contains("64")) {
-				sb.append(POSIX_EXEC_PREFIX);
 				sb.append(CPUMINER_DIR);
 				sb.append(MAC_OSX64_DIR);
 				sb.append(POSIX_EXEC);
-			} else if (SystemUtils.OS_ARCH.contains("32")) {
+				String absolutePath = new File(sb.toString()).getAbsolutePath();
+				sb.delete(0, sb.length());
 				sb.append(POSIX_EXEC_PREFIX);
+				sb.append(absolutePath);
+			} else if (SystemUtils.OS_ARCH.contains("32")) {
 				sb.append(CPUMINER_DIR);
 				sb.append(MAC_OSX32_DIR);
 				sb.append(POSIX_EXEC);
 			} else {
-				sb.append(POSIX_EXEC_PREFIX);
 				sb.append(CPUMINER_DIR);
 				sb.append(MAC_OSX32_DIR);
 				sb.append(POSIX_EXEC);

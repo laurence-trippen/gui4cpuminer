@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.laurencetrippen.gui4cpuminer.model.Minerd;
+import com.laurencetrippen.gui4cpuminer.view.scene.MainScene;
 
 import javafx.application.Platform;
 import javafx.concurrent.Service;
@@ -12,13 +13,19 @@ import javafx.concurrent.Task;
 
 public class MinerdService extends Service<Void> {
 
+	private MainScene mainScene;
+	
+	public MinerdService(MainScene mainScene) {
+		this.mainScene = mainScene;
+	}
+	
 	@Override
 	protected Task<Void> createTask() {
 		return new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				ProcessBuilder processBuilder = new ProcessBuilder(Minerd.buildCommand());
-				processBuilder.directory(Minerd.getProcessDirectory());
+				ProcessBuilder processBuilder = new ProcessBuilder("./minerd" , "--help");
+				processBuilder.directory(Minerd.getProcessDirectory().getAbsoluteFile());
 				
 				try {
 					Process process = processBuilder.start();
@@ -55,7 +62,9 @@ public class MinerdService extends Service<Void> {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(message);
+				if (message != null) {
+					mainScene.consoleLog(message + "\n");	
+				}
 			}
 		});
 	}
