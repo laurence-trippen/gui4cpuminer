@@ -1,5 +1,8 @@
 package com.laurencetrippen.gui4cpuminer.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.laurencetrippen.jpg.ConfigFile;
 import com.laurencetrippen.jpg.ConfigProperty;
 
@@ -79,6 +82,33 @@ public class MiningConfiguration {
 		this.algorithms[0] = "Scrypt";
 		this.algorithms[1] = "sha256d";
 		this.algorithms[2] = "SHA_256d";
+	}
+	
+	public List<String> generateArguments() {
+		List<String> arguments = new ArrayList<>();
+		
+		if (username != null && !username.isEmpty()) {
+			arguments.add("--user=" + username);
+			arguments.add("--pass=" + password);
+		}
+		
+		if (url != null && !url.isEmpty()) {
+			arguments.add("--url=" + url);
+		}
+		
+		if (coinbaseAddress != null && !coinbaseAddress.isEmpty()) {
+			arguments.add("--coinbase-addr=" + coinbaseAddress);
+		}
+		
+		if (coinbaseSig != null && !coinbaseSig.isEmpty()) {
+			arguments.add("--coinbase-sig=" + coinbaseSig);
+		}
+		
+		if (jsonConfigPath != null && !jsonConfigPath.isEmpty()) {
+			arguments.add("");
+		}
+		
+		return arguments;
 	}
 	
 	public String[] getAlgorithms() {

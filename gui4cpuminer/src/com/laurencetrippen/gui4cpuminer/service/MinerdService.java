@@ -23,7 +23,7 @@ public class MinerdService extends Service<Void> {
 	protected Task<Void> createTask() {
 		return new Task<Void>() {
 			@Override
-			protected Void call() throws Exception {
+			protected Void call() throws Exception {				
 				ProcessBuilder processBuilder = new ProcessBuilder("./minerd" , "--help");
 				processBuilder.directory(Minerd.getProcessDirectory().getAbsoluteFile());
 				
