@@ -1,7 +1,6 @@
 package com.laurencetrippen.gui4cpuminer.view.scene;
 
 import com.laurencetrippen.gui4cpuminer.model.Resources;
-import com.laurencetrippen.gui4cpuminer.view.node.NumberFieldComponent;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
 
 import javafx.collections.ObservableList;
