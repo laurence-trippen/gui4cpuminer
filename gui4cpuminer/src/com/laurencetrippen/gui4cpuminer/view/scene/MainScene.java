@@ -1,8 +1,8 @@
 package com.laurencetrippen.gui4cpuminer.view.scene;
 
 import com.laurencetrippen.gui4cpuminer.model.Resources;
+import com.laurencetrippen.gui4cpuminer.view.node.NumberFieldComponent;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
-import com.laurencetrippen.gui4cpuminer.view.node.TextFieldComponent;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -25,7 +24,6 @@ public class MainScene extends AbstractScene {
 	private Button saveButton;
 	private Sidebar sidebar;
 	private TextArea consoleTextArea;
-	private ScrollPane scrollPane;
 	private AnchorPane contentPane;
 	private GridPane gridPane;
 	
@@ -44,7 +42,6 @@ public class MainScene extends AbstractScene {
 		this.saveButton = new Button("Save");
 		this.sidebar = new Sidebar(configPane);
 		this.consoleTextArea = new TextArea();
-		this.scrollPane = new ScrollPane();
 		this.contentPane = new AnchorPane();
 		this.gridPane = new GridPane();
 	}
