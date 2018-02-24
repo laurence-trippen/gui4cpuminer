@@ -20,17 +20,17 @@
 	-fx-background-color: #404040;
 }
 
-.ui-button {
+Button {
 	-fx-background-color: #43bc62;
 	-fx-text-fill: white;
 	-fx-font-size: 17;
 }
 
-.ui-button:hover {
+Button:hover {
 	-fx-background-color: #36964e;
 }
 
-.ui-textfield {
+TextField {
 	-fx-font-size: 16;
 	-fx-background-color: #cccccc;
 	-fx-background-radius: 4;

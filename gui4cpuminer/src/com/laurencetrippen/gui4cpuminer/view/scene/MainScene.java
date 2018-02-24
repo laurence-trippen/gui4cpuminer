@@ -2,6 +2,7 @@ package com.laurencetrippen.gui4cpuminer.view.scene;
 
 import com.laurencetrippen.gui4cpuminer.model.Resources;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
+import com.laurencetrippen.gui4cpuminer.view.node.TextFieldComponent;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 
 public class MainScene extends AbstractScene {
 
@@ -22,6 +26,7 @@ public class MainScene extends AbstractScene {
 	private Sidebar sidebar;
 	private TextArea consoleTextArea;
 	private ScrollPane scrollPane;
+	private AnchorPane contentPane;
 	private GridPane gridPane;
 	
 	public MainScene() {
@@ -40,6 +45,7 @@ public class MainScene extends AbstractScene {
 		this.sidebar = new Sidebar(configPane);
 		this.consoleTextArea = new TextArea();
 		this.scrollPane = new ScrollPane();
+		this.contentPane = new AnchorPane();
 		this.gridPane = new GridPane();
 	}
 
@@ -50,7 +56,6 @@ public class MainScene extends AbstractScene {
 		this.saveButton.setPrefWidth(180);
 		this.saveButton.setPrefHeight(40);	
 		this.saveButton.setOnAction(this::onSaveButtonClick);
-		this.saveButton.getStyleClass().add("ui-button");
 		this.saveButton.setLayoutX(60);
 		this.saveButton.setLayoutY(60);
 		
@@ -64,7 +69,6 @@ public class MainScene extends AbstractScene {
 		this.startButton.setLayoutX(270);
 		this.startButton.setLayoutY(60);
 		this.startButton.setOnAction(this::onStartButtonClick);
-		this.startButton.getStyleClass().add("ui-button");
 		
 		this.stopButton.setDisable(true);
 		this.stopButton.setPrefWidth(200);
@@ -72,12 +76,25 @@ public class MainScene extends AbstractScene {
 		this.stopButton.setLayoutX(480);
 		this.stopButton.setLayoutY(60);
 		this.stopButton.setOnAction(this::onStopButtonClick);
-		this.stopButton.getStyleClass().add("ui-button");
+		
+		this.gridPane.setLayoutX(103);
+		this.gridPane.setLayoutY(103);
+		this.gridPane.setPrefWidth(600);
+		this.gridPane.setPrefHeight(500);
+		this.gridPane.setGridLinesVisible(true);
+		this.gridPane.getColumnConstraints().addAll(new ColumnConstraints(200), new ColumnConstraints(400));
+		this.gridPane.getRowConstraints().add(new RowConstraints(60));
+		
+		this.contentPane.getStyleClass().add("ui-config-pane");
+		this.contentPane.setPrefSize(806, 900);
+		
+		ObservableList<Node> contentNodes = this.contentPane.getChildren();
+		contentNodes.add(gridPane);
 		
 		this.configPane.setLayoutX(-624);
 		this.configPane.setPrefWidth(824);
 		this.configPane.setPrefHeight(768);
-		this.configPane.getStyleClass().add("ui-config-pane");
+		this.configPane.setContent(contentPane);
 		
 		ObservableList<Node> rootNodes = root.getChildren();
 		rootNodes.add(startButton);
