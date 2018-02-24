@@ -12,7 +12,7 @@ public class TextFieldComponent extends HBox implements IComponent {
 		this.setAlignment(Pos.CENTER);
 		this.textField = new TextField();
 		this.textField.setPromptText(promptText);
-		this.textField.setPrefWidth(350);
+		this.textField.setPrefWidth(360);
 		this.getChildren().add(textField);
 	}
 

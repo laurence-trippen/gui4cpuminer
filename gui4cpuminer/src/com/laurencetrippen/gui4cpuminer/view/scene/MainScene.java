@@ -1,7 +1,10 @@
 package com.laurencetrippen.gui4cpuminer.view.scene;
 
 import com.laurencetrippen.gui4cpuminer.model.Resources;
+import com.laurencetrippen.gui4cpuminer.view.node.FileSelectComponent;
+import com.laurencetrippen.gui4cpuminer.view.node.LabelComponent;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
+import com.laurencetrippen.gui4cpuminer.view.node.TextFieldComponent;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,7 +80,7 @@ public class MainScene extends AbstractScene {
 		this.gridPane.setLayoutY(103);
 		this.gridPane.setPrefWidth(600);
 		this.gridPane.setPrefHeight(500);
-		this.gridPane.setGridLinesVisible(true);
+		this.gridPane.setGridLinesVisible(false);
 		this.gridPane.getColumnConstraints().addAll(new ColumnConstraints(200), new ColumnConstraints(400));
 		this.gridPane.getRowConstraints().add(new RowConstraints(60));
 		
