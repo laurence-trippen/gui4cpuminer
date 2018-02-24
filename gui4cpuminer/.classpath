@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/java-properties-generator-v1.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.7.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.10.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
