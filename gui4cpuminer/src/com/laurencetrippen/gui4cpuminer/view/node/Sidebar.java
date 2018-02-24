@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -23,10 +24,10 @@ public class Sidebar extends Pane {
 	private boolean settingsIsActive = false;
 	private Button dashboardButton;
 	private Button settingsButton;
-	private AnchorPane configPane;
+	private ScrollPane configPane;
 	private ImageView imageView;
 	
-	public Sidebar(AnchorPane configPane) {
+	public Sidebar(ScrollPane configPane) {
 		this.configPane = configPane;
 		this.initNode();
 		this.defineNode();

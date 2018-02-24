@@ -24,8 +24,6 @@ public class GUI4CPUMiner extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("gui4cpuminer");
 		primaryStage.setResizable(false);
-		primaryStage.setMaxWidth(1024);
-		primaryStage.setMaxHeight(768);
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
 	}
