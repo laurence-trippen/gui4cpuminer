@@ -1,10 +1,7 @@
 package com.laurencetrippen.gui4cpuminer.view.scene;
 
 import com.laurencetrippen.gui4cpuminer.model.Resources;
-import com.laurencetrippen.gui4cpuminer.view.node.FileSelectComponent;
-import com.laurencetrippen.gui4cpuminer.view.node.LabelComponent;
 import com.laurencetrippen.gui4cpuminer.view.node.Sidebar;
-import com.laurencetrippen.gui4cpuminer.view.node.TextFieldComponent;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +30,11 @@ public class MainScene extends AbstractScene {
 		super(new AnchorPane(), 1024, 768);
 		this.initScene();
 		this.defineScene();
+		this.loadPlugin();
+	}
+
+	private void loadPlugin() {
+		
 	}
 
 	@Override

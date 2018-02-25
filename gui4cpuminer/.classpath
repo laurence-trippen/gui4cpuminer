@@ -6,5 +6,8 @@
 	<classpathentry kind="lib" path="lib/java-properties-generator-v1.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.7.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-api-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.9.4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.9.4.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.9.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

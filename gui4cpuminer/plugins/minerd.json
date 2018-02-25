@@ -1,0 +1,14 @@
+{
+	"settingsEntries" : [
+		{
+			"name" : "Syslog",
+			"settingsType" : "boolean",
+			"argument" : "--syslog=<value>"
+		},
+		{
+			"name" : "Max. Threads",
+			"settingsType" : "number",
+			"argument" : "max-threads <value>"
+		}
+	]
+}
